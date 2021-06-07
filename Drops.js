@@ -1,24 +1,26 @@
-class Drops{
+class createDrop {
+
     constructor(x,y){
-   
-    this.width = random(1,2);
-    this.height = random(0,10);
-    this.x = random(0,window.innerWidth);
-    this.y = random(-10,600);
-    this.velocityY  = random(2,5);
-    
-  }
+        var options = {
+            friction: 0.001,
+            restitution: 0.1           
+        }
 
-  display(){
-    stroke("blue");
-    fill("blue");
-    var size = random(10,35);
-  rect(this.x,this.y,this.width,this.height+size)
-  
+        this.rain = Bodies.circle(x,y,5,options);
+        this.radius = 5;
+        World.add(world, this.rain);
+    }
 
-  }
-    
-  fall(){
-    
-  }
+    updateY(){     
+        if(this.rain.position.y > height){
+
+            Matter.Body.setPosition(this.rain, {x:random(0,400), y:random(0,400)});
+        }
+    }
+
+    showDrop(){
+        fill("blue");
+        ellipseMode(CENTER);
+        ellipse(this.rain.position.x,this.rain.position.y,this.radius,this.radius);
+    }
 }
