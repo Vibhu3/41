@@ -1,19 +1,20 @@
 class Umbrella {
-    constructor(x, y, radius) {
+
+    constructor(x,y){
         var options = {
             isStatic: true
         }
-        this.radius = radius;
-        this.body = Bodies.circle(x, y, radius, options);
-        this.image = loadImage("umbrella.png");
-        World.add(world, this.body);
+
+        this.image = loadImage("images/Walking Frame/walking_1.png");
+        this.umbrella = Bodies.circle(x,y,50,options);
+        this.radius = 50;
+        World.add(world, this.umbrella);
     }
-    display() {
-        push();
-        translate(this.body.position.x, this.body.position.y);
+
+    display()
+    {
+        var pos = this.umbrella.position;
         imageMode(CENTER);
-        image(this.image, 0, 0, this.radius, this.radius);
-        this.visiblity = 0;
-        pop();
+        image(this.image, pos.x, pos.y + 70, 300, 300);
     }
-  }
+}
